@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -55,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                 List<CustomerModel> everyone =dataBaseHelper.getEveryone();
-                Toast.makeText(MainActivity.this,everyone.toString(),Toast.LENGTH_SHORT).show();
+
+                ArrayAdapter customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1,everyone);
+                lv_customerList.setAdapter(customerArrayAdapter);
+
+
+                //Toast.makeText(MainActivity.this,everyone.toString(),Toast.LENGTH_SHORT).show();
 
             }
         });
