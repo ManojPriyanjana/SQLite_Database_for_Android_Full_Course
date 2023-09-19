@@ -1,5 +1,7 @@
 package com.manoj.understanddb;
 
+import androidx.annotation.NonNull;
+
 public class CustomerModel {
 
     private int id;
@@ -19,6 +21,8 @@ public class CustomerModel {
     }
     //toString is necessary for printing the contents of a class object
 
+
+    @NonNull
     @Override
     public String toString() {
         return "CustomerModel{" +

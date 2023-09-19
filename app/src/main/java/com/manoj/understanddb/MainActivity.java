@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     Button btn_add, btn_viewAll;
     EditText et_name,et_age;
@@ -30,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
        //button listeners for the add and view all buttons
         btn_add.setOnClickListener(new View.OnClickListener() {
-            CustomerModel customerModel;
-            public void onClick(View view) {
+
+            public void onClick(View v) {
+                CustomerModel customerModel;
                 try {
                    customerModel = new CustomerModel(-1,et_name.getText().toString(),Integer.parseInt(et_age.getText().toString()),sw_activeCustomer.isChecked());
                     Toast.makeText(MainActivity.this,customerModel.toString(),Toast.LENGTH_SHORT).show();
@@ -50,15 +53,12 @@ public class MainActivity extends AppCompatActivity {
         btn_viewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"View All Button",Toast.LENGTH_SHORT).show();
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+                List<CustomerModel> everyone =dataBaseHelper.getEveryone();
+                Toast.makeText(MainActivity.this,everyone.toString(),Toast.LENGTH_SHORT).show();
+
             }
         });
-
-
-
-
-
-
 
     }
 }
